@@ -1,21 +1,27 @@
+const lookup = {
+  A: "N", B: "O", C: "P", D: "Q", E: "R", F: "S", G: "T", H: "U", I: "V", J: "W", K: "X", L: "Y", M: "Z",
+  N: "A", O: "B", P: "C", Q: "D", R: "E", S: "F", T: "G", U: "H", V: "I", W: "J", X: "K", Y: "L", Z: "M",
+  "?": "?", ",": " ",
+};
+
 function rot13(encodedStr) {
   let decodedArr = []; 
-  
-  // 1. Split the string into an array of characters
-  // 2. Iterate through each character
-  for (let i = 0; i < encodedStr.length; i++) {
-    let char = encodedStr[i];
 
-    // Check if the character exists in our lookup table
+  // Loop through the string
+  for (let i = 0; i < encodedStr.length; i++) {
+    const char = encodedStr[i];
+    
+    // Check if the character exists in the lookup object
     if (lookup[char] !== undefined) {
-      // If it exists, push the decoded version to our array
       decodedArr.push(lookup[char]);
     } else {
-      // If it's not in the lookup (like a space or '!'), pass it through as is
+      // If it's a space or symbol not in lookup, keep it as is
       decodedArr.push(char);
     }
   }
 
-  // Join the array back into a string and return it
-  return decodedArr.join(""); 
+  return decodedArr.join("");
 }
+
+// Ensure the function is available globally for the tests
+window.rot13 = rot13;
